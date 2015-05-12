@@ -15,10 +15,13 @@ describe Tennis do
     expect(@player2.class).to eq(Player)
   end
 
-  it 'scores a scoreless game Love-All' do
-
+  it 'scores a scoreless game' do
     expect(@game.score).to eq('Love-All')
+  end
 
+  it 'scores a 1-0 game' do
+    @player1.wins_point
+    expect(@game.score).to eq('Fifteen-Love')
   end
 
 end
