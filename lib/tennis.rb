@@ -10,10 +10,13 @@ class Tennis
   def score
 
     if points_played > 0
-      return "#{SCORING[@player1.points]}-#{SCORING[@player2.points]}"
+      score = "#{SCORING[@player1.points]}-#{SCORING[@player2.points]}"
+    else
+      score ="Love-All"
     end
 
-    "Love-All"
+    return score
+
   end
 
   def points_played
