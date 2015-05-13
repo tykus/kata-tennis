@@ -9,10 +9,10 @@ class Tennis
 
   def score
 
-    return "Win for #{winning_player.name}" if has_been_won
+    return "Win for #{winning_player.name}" if has_been_won?
 
     score = "#{SCORING[@player1.points]}-"
-    if tied
+    if tied?
       score += "All"
     else
       score += "#{SCORING[@player2.points]}"
@@ -21,8 +21,16 @@ class Tennis
     return score
   end
 
-  def has_been_won
-    [@player1.points, @player2.points].max >= 4 and (@player1.points - @player2.points).abs >= 2
+  def has_been_won?
+    player_scores_at_least_4_points? and player_leads_by_2_or_more_points?
+  end
+
+  def player_scores_at_least_4_points?
+    [@player1.points, @player2.points].max >= 4
+  end
+
+  def player_leads_by_2_or_more_points?
+    (@player1.points - @player2.points).abs >= 2
   end
 
   def winning_player
@@ -37,9 +45,10 @@ class Tennis
     @player1.points + @player2.points
   end
 
-  def tied
+  def tied?
     @player1.points == @player2.points
   end
 
-  private :points_played, :tied, :has_been_won, :winning_player
+  private :points_played, :tied?, :has_been_won?, :winning_player,
+    :player_scores_at_least_4_points?, :player_leads_by_2_or_more_points?
 end
