@@ -10,8 +10,8 @@ class Tennis
   def score
 
     return "Win for #{winning_player.name}" if has_been_won?
-
-    return "Deuce" if tied? and points_played >= 6
+    return "Deuce" if points_played >= 6 and tied?
+    return "Advantage #{winning_player.name}" if points_played >= 6 and player_leads_by_one_point?
 
     score = "#{SCORING[@player1.points]}-"
     if tied?
@@ -31,6 +31,10 @@ class Tennis
 
     def player_scores_at_least_4_points?
       [@player1.points, @player2.points].max >= 4
+    end
+
+    def player_leads_by_one_point?
+      (@player1.points - @player2.points).abs == 1
     end
 
     def player_leads_by_2_or_more_points?
