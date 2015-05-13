@@ -9,10 +9,11 @@ class Tennis
 
   def score
 
-    if points_played > 0
-      score = "#{SCORING[@player1.points]}-#{SCORING[@player2.points]}"
+    score = "#{SCORING[@player1.points]}-"
+    if tied
+      score += "All"
     else
-      score ="Love-All"
+      score += "#{SCORING[@player2.points]}"
     end
 
     return score
@@ -23,5 +24,9 @@ class Tennis
     @player1.points + @player2.points
   end
 
-  private :points_played
+  def tied
+    @player1.points == @player2.points
+  end
+
+  private :points_played, :tied
 end
