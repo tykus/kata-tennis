@@ -57,4 +57,18 @@ describe Tennis do
     expect(@game.score).to eq('Deuce')
   end
 
+  it "scores a 5-5 game 'Deuce'" do
+    5.times { @player1.wins_point }
+    5.times { @player2.wins_point }
+    expect(@game.score).to eq('Deuce')
+  end
+
+  it "scores a 5-3 game 'Win'" do
+    5.times { @player1.wins_point }
+    3.times { @player2.wins_point }
+    expect(@game.score).to eq("Win for #{@player1.name}")
+  end
+
+
+
 end
