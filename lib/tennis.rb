@@ -10,10 +10,10 @@ class Tennis
   def score
     case
     when has_been_won?
-      return "Win for #{winning_player.name}"
-    when (points_played >= 6 and tied?)
+      return "Game #{winning_player.name}"
+    when (players_have_won_at_least_3_points and tied?)
       return "Deuce"
-    when (points_played >= 6 and player_leads_by_one_point?)
+    when (players_have_won_at_least_3_points and player_leads_by_one_point?)
       return "Advantage #{winning_player.name}"
     else
       return general_scoring_format
@@ -29,6 +29,10 @@ class Tennis
 
     def has_been_won?
       player_scores_at_least_4_points? and player_leads_by_2_or_more_points?
+    end
+
+    def players_have_won_at_least_3_points
+      @player1.points >= 3 and @player2.points >= 3
     end
 
     def player_scores_at_least_4_points?

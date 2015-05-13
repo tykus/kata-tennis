@@ -34,9 +34,9 @@ describe Tennis do
     expect(@game.score).to eq('Forty-Love')
   end
 
-  it "scores a 4-0 game 'Win'" do
+  it "scores a 4-0 game 'Game'" do
     4.times { @player1.wins_point }
-    expect(@game.score).to eq("Win for #{@player1.name}")
+    expect(@game.score).to eq("Game #{@player1.name}")
   end
 
   it "scores a 1-1 game 'Fifteen-All'" do
@@ -63,16 +63,28 @@ describe Tennis do
     expect(@game.score).to eq("Advantage #{@player1.name}")
   end
 
-  it "scores a 5-3 game 'Win'" do
+  it "scores a 4-4 game 'Deuce'" do
+    4.times { @player1.wins_point }
+    4.times { @player2.wins_point }
+    expect(@game.score).to eq('Deuce')
+  end
+
+  it "scores a 5-3 game 'Game'" do
     5.times { @player1.wins_point }
     3.times { @player2.wins_point }
-    expect(@game.score).to eq("Win for #{@player1.name}")
+    expect(@game.score).to eq("Game #{@player1.name}")
   end
 
   it "scores a 5-5 game 'Deuce'" do
     5.times { @player1.wins_point }
     5.times { @player2.wins_point }
     expect(@game.score).to eq('Deuce')
+  end
+
+  it "scores a 8-10 game 'Game'" do
+    8.times { @player1.wins_point }
+    10.times { @player2.wins_point }
+    expect(@game.score).to eq("Game #{@player2.name}")
   end
 
 end
