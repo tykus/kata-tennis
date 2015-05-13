@@ -50,4 +50,11 @@ describe Tennis do
     2.times { @player2.wins_point }
     expect(@game.score).to eq('Thirty-All')
   end
+
+  it "scores a 3-3 game 'Deuce'" do
+    3.times { @player1.wins_point }
+    3.times { @player2.wins_point }
+    expect(@game.score).to eq('Deuce')
+  end
+
 end
