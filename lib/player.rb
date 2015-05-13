@@ -10,4 +10,5 @@ class Player
   def wins_point
     @points += 1
   end
+  
 end
