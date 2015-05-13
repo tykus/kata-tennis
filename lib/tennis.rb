@@ -20,15 +20,15 @@ class Tennis
     end
   end
 
+  def has_been_won?
+    player_scores_at_least_4_points? and player_leads_by_2_or_more_points?
+  end
+
   private
 
     def general_scoring_format
       score = "#{SCORING[@player1.points]}-"
       score += tied? ? "All" : "#{SCORING[@player2.points]}"
-    end
-
-    def has_been_won?
-      player_scores_at_least_4_points? and player_leads_by_2_or_more_points?
     end
 
     def players_have_won_at_least_3_points
