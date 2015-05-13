@@ -10,5 +10,13 @@ class Player
   def wins_point
     @points += 1
   end
-  
+
+  def <=>(other)
+    other.points <=> @points
+  end
+
+  def to_s
+    "#{@name} has #{@points} points."
+  end
+
 end
