@@ -48,11 +48,8 @@ class Tennis
     end
 
     def winning_player
-      if @player1.points > @player2.points
-        return @player1
-      elsif @player1.points < @player2.points
-        return @player2
-      end
+      players = [@player1,@player2].sort
+      players[0]
     end
 
     def points_played
