@@ -8,22 +8,24 @@ class Tennis
   end
 
   def score
-
-    return "Win for #{winning_player.name}" if has_been_won?
-    return "Deuce" if points_played >= 6 and tied?
-    return "Advantage #{winning_player.name}" if points_played >= 6 and player_leads_by_one_point?
-
-    score = "#{SCORING[@player1.points]}-"
-    if tied?
-      score += "All"
+    case
+    when has_been_won?
+      return "Win for #{winning_player.name}"
+    when (points_played >= 6 and tied?)
+      return "Deuce"
+    when (points_played >= 6 and player_leads_by_one_point?)
+      return "Advantage #{winning_player.name}"
     else
-      score += "#{SCORING[@player2.points]}"
+      return general_scoring_format
     end
-
-    return score
   end
 
   private
+
+    def general_scoring_format
+      score = "#{SCORING[@player1.points]}-"
+      score += tied? ? "All" : "#{SCORING[@player2.points]}"
+    end
 
     def has_been_won?
       player_scores_at_least_4_points? and player_leads_by_2_or_more_points?
